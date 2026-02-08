@@ -1,93 +1,131 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
-
+<html lang="en">
 <head>
-  <meta charset="utf-8">
-  <title>🖤Ebi's first website</title>
+  <meta charset="UTF-8">
+  <title>Be My Valentine 💖</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #ff758c, #ff7eb3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .box {
+      background: white;
+      padding: 30px;
+      border-radius: 20px;
+      text-align: center;
+      width: 320px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+      animation: pop 1s ease;
+    }
+
+    h1 {
+      color: #e63973;
+      margin-bottom: 10px;
+    }
+
+    .buttons {
+      margin-top: 20px;
+      display: flex;
+      justify-content: space-around;
+    }
+
+    button {
+      padding: 12px 22px;
+      border: none;
+      border-radius: 30px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: 0.2s ease;
+    }
+
+    #yesBtn {
+      background: #e63973;
+      color: white;
+    }
+
+    #noBtn {
+      background: #ddd;
+    }
+
+    #message {
+      margin-top: 20px;
+      font-size: 18px;
+      color: #e63973;
+      display: none;
+    }
+
+    @keyframes pop {
+      from { transform: scale(0.8); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    /* Floating hearts */
+    .heart {
+      position: absolute;
+      bottom: -20px;
+      font-size: 20px;
+      animation: float 6s linear;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0); opacity: 1; }
+      100% { transform: translateY(-100vh); opacity: 0; }
+    }
+  </style>
 </head>
-
 <body>
-  <table cellspacing="20">
-    <tr>
-      <td><img src="space.jpg" alt="logo"></td>
-      <td>
-        <h1><em>EBI SUSHIL</em></h1>
-        <p><em><b>founder and ceo of my own browser</b></em></p>
-        <p>so guys this was not my first website i did earlier but it quite similar</p>
-        <h5><b><a href="https://www.youtube.com/watch?v=GxM3wstBcD4">dont click this❌</a></b></h5>
-      </td>
-    </tr>
-  </table>
-  <hr size=3 color=black noshade>
-  <h3><b><em>EDUCATION AND LIST OF ALL SCHOOLS I STUDIED</em></b></h3>
-  <ul type=disc>
-    <b>
-      <em>
-        <li>Vevekandanda</li>
-        <li>ECI</li>
-        <li>Velammal</li>
-        <li>RPC</li>
-      </em>
-    </b>
-  </ul>
-  <hr size=3 color=black noshade>
-  <table cellspacing=10 bgcolor=cyan border="4">
-    <thead>
-      <tr>
-        <td><b>S.NO</b></td>
-        <td><b>BOARD EXAM</b></td>
-        <td><b>PERCENTAGE</b></td>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><em>1.</em></td>
-        <td><em>sslc 10th BOARD</em></td>
-        <td><em>67%</em></td>
-      </tr>
-      <tr>
-        <td><em>2.</em></td>
-        <td><em>12th state board</em></td>
-        <td><em>90%</em></td>
-      </tr>
-    </tbody>
-  </table>
-  <hr size=3 color=black noshade>
-  <!--table nesting-->
-  <h3>Skills</h3>
-  <table border="2" cellspacing= 20>
-    <tr>
-      <td>
-        <table>
-          <tr>
-            <td><b>ios Development</b></td>
-            <td>⭐⭐⭐⭐⭐</td>
-          </tr>
-          <tr>
-            <td><b>WEB DEVELOPMENT</b></td>
-            <td>⭐⭐⭐⭐</td>
-          </tr>
-        </table>
-      </td>
-      <td>
-        <table>
-          <tr>
-            <td><b>painting</b></td>
-            <td>⭐⭐⭐</td>
-          </tr>
-          <tr>
-            <td><b>Photography</b></td>
-            <td>⭐⭐</td>
-          </tr>
-        </table>
-      </td>
-    </tr>
-  </table>
 
-  <hr size=3 color=black noshade>
-  <b><a href="hobbies.html">MY HOBBIES</a></b>
-  <br>
-  <u><b><em><a href="contact me.html">CONTACT ME</a></em></b></u>
+  <div class="box">
+    <h1>Will you be my Valentine? 💖</h1>
+
+    <div class="buttons">
+      <button id="yesBtn" onclick="yesClicked()">Yes 💕</button>
+      <button id="noBtn" onmouseover="moveNo()">No 😅</button>
+    </div>
+
+    <div id="message">
+      YAY!! 💫<br>
+      You just made my heart so happy 💖
+    </div>
+  </div>
+
+  <script>
+    function yesClicked() {
+      document.getElementById("message").style.display = "block";
+      startHearts();
+    }
+
+    function moveNo() {
+      const btn = document.getElementById("noBtn");
+      const x = Math.random() * (window.innerWidth - 100);
+      const y = Math.random() * (window.innerHeight - 50);
+      btn.style.position = "absolute";
+      btn.style.left = x + "px";
+      btn.style.top = y + "px";
+    }
+
+    function startHearts() {
+      setInterval(() => {
+        const heart = document.createElement("div");
+        heart.className = "heart";
+        heart.innerHTML = "❤️";
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.fontSize = (16 + Math.random() * 20) + "px";
+        document.body.appendChild(heart);
+
+        setTimeout(() => heart.remove(), 6000);
+      }, 300);
+    }
+  </script>
+
 </body>
-
 </html>
